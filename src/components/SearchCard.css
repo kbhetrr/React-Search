@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+.CardBox {
+	background-color: white;
+	border: medium solid lightgrey;
+	border-radius: 10px 10px 10px 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 10px;
+	word-break: break-all;
+}
+.highlight {
+	color: #FF0000;
+	font-weight: bold;
+}
