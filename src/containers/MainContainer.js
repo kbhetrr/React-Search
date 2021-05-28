@@ -29,7 +29,7 @@ const MainContainer = () => {
                     <div>
                         <Search
                             size='large'
-                            placeholder="AdSearch 검색"
+                            placeholder="PartSearch 검색"
                             onSearch={() => {history.push({
                                 pathname: "/search",
                                 state: {Query: Query}
@@ -39,14 +39,9 @@ const MainContainer = () => {
                         />
                     </div>
                     <div className="Description">
-                    <p>AdSearch를 통해 제품 또는 기업이 허위·과장광고로 적발된 이력이 있는지 검색해보세요!</p>
+                    <p>PartSearch를 통해 제품 또는 기업이 허위·과장광고로 적발된 이력이 있는지 검색해보세요!</p>
                     </div>
                 </div>
-                    <div className="About">
-                        <Button type="default" shape="round" size="large" onClick={() => {history.push({pathname: "/about"})}}>
-                            AdSearch 더 알아보기
-                        </Button>
-                    </div>
             </div>
         </Fragment>
     );

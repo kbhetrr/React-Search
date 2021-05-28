@@ -11,7 +11,6 @@ const App = () => {
         <BrowserRouter>
           <Route exact path="/" component={MainContainer} />
           <Route exact path="/search" component={SearchContainer} />
-          <Route exact path="/about" component={AboutContainer} />
         </BrowserRouter>
   )
 }

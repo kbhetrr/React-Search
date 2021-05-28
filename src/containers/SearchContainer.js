@@ -3,7 +3,7 @@ import { Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 import SearchCard from '../components/SearchCard';
-import data from '../datas/data.json';
+import data from '../datas/data2.json';
 
 import {useLocation, useHistory} from "react-router";
 import logo from '../logo.png';
@@ -48,15 +48,15 @@ const SearchContainer = () => {
         let items = [];
 
         for (var i = 0; i < data.length; i++) {
-            if (String(data[i]['Material']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description1']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description2']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description3']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description4']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description5']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Description6']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Old Mat Num']).indexOf(Search_Query) != -1) items.push(data[i]);
-            else if (String(data[i]['Mfr part number']).indexOf(Search_Query) != -1) items.push(data[i]);
+            if (String(data[i]['Material']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description1']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description2']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description3']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description4']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description5']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Description6']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Old Mat Num']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+            else if (String(data[i]['Mfr part number']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
         }
 
         setResultCnt(5);
