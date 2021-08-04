@@ -4,7 +4,7 @@ import {useHistory} from "react-router";
 
 import './MainContainer.css';
 import 'antd/dist/antd.css';
-import logo from '../logo.png';
+import logo from '../logo2.png';
 
 import './MainContainer.css';
 
@@ -23,7 +23,7 @@ const MainContainer = () => {
         <Fragment>
             <div className="App">
                 <div className="main">
-                    <div className="LogoBox">
+                    <div className="LogoBox" style={{marginBottom: 32}}>
                         <img src={logo} className="Logo" />
                     </div>
                     <div>
@@ -39,7 +39,7 @@ const MainContainer = () => {
                         />
                     </div>
                     <div className="Description">
-                    <p>PartSearch를 통해 제품 또는 기업이 허위·과장광고로 적발된 이력이 있는지 검색해보세요!</p>
+                    <p>PartSearch를 통해 검색해보세요!</p>
                     </div>
                 </div>
             </div>
