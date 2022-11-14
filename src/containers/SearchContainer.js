@@ -6,7 +6,7 @@ import SearchCard from '../components/SearchCard';
 import data from '../datas/data2.json';
 
 import {useLocation, useHistory} from "react-router";
-import logo from '../logo.png';
+import logo from '../logo2.png';
 
 import './SearchContainer.css';
 
@@ -86,14 +86,14 @@ const SearchContainer = () => {
                                 state: {Query: Query}
                             })}}
                             onChange={handleQuery}
-                            style={{ width: 1200 }}
+                            style={{}}
                         />
                     </div>
                     <div className="ResultBox">
                         <div>
-                            <h1>검색 결과 {Items.length}개</h1>
+                            검색 결과 {Items.length}개
                         </div>
-                        <div style={{ alignItems: 'center', justifyContent: 'center', width: 1200 }}>
+                        <div style={{ alignItems: 'center', justifyContent: 'center', width: '95%' }}>
                             {Items.length > 0 ? 
                             PrintItems.map((data) => {
                                 return <SearchCard data={data} query={Search_Query} />
@@ -110,9 +110,9 @@ const SearchContainer = () => {
                     </div>
                     <div>
                     {Items.length > ResultCnt ?
-                    <Button block onClick={handleResultCnt} style={{marginBottom: 15}}>
-                        더 찾아보기
-                    </Button>
+                        <Button block onClick={handleResultCnt} style={{marginBottom: 15}}>
+                            더 찾아보기
+                        </Button>
                     : ""}
                     </div>
                 </div>

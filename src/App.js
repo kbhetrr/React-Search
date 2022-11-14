@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom'; //React-Router import
 
 import MainContainer from './containers/MainContainer';
 import SearchContainer from './containers/SearchContainer';
-import AboutContainer from './containers/AboutContainer';
 
 const App = () => {
   return (

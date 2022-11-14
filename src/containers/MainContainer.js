@@ -6,7 +6,6 @@ import './MainContainer.css';
 import 'antd/dist/antd.css';
 import logo from '../logo2.png';
 
-import './MainContainer.css';
 
 const { Search } = Input;
 
@@ -35,11 +34,11 @@ const MainContainer = () => {
                                 state: {Query: Query}
                             })}}
                             onChange={handleQuery}
-                            style={{ width: 1000 }}
+                            style={{ paddingLeft: 32, paddingRight: 32 }}
                         />
                     </div>
                     <div className="Description">
-                    <p>PartSearch를 통해 검색해보세요!</p>
+                        PartSearch를 통해 검색해보세요!
                     </div>
                 </div>
             </div>
