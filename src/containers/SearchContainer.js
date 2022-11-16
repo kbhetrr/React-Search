@@ -24,8 +24,13 @@ const SearchContainer = () => {
 
     const Search_Query = location.state.Query;
 
-    const [Items, setItems] = useState([]);
+    const [PMKItems, setPMKItems] = useState([]);
+    const [POItems, setPOItems] = useState([]);
+    const [PRItems, setPRItems] = useState([]);
     const [PrintItems, setPrintItems] = useState([]);
+    const [NowItem, setNowItem] = useState("PMK 재고");
+
+    const [isLoading, setisLoading] = useState(true);
 
     const [Query, setQuery] = useState('');
 
@@ -40,21 +45,16 @@ const SearchContainer = () => {
     };
 
     useEffect(() => {
-        console.log(Items.slice(undefined, ResultCnt > Items.length ? Items.length : ResultCnt));
-        setPrintItems(Items.slice(undefined, ResultCnt > Items.length ? Items.length : ResultCnt));
-    }, [Items]);
+        setisLoading(true);
 
-    useEffect(() => {
-        setPrintItems(Items.slice(undefined, ResultCnt > Items.length ? Items.length : ResultCnt));
-    }, [ResultCnt]);
-
-    useEffect(() => {
-        let items = [];
+        let temp_pmk = [];
+        let temp_po = [];
+        let temp_pr = [];
 
         for (var i = 0; i < pmk.length; i++) {
             for (var key in pmk[i]) {
                 if (String(pmk[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
-                    items.push(pmk[i]);
+                    temp_pmk.push(pmk[i]);
                     break;
                 }
             }
@@ -62,7 +62,7 @@ const SearchContainer = () => {
         for (var i = 0; i < po.length; i++) {
             for (var key in po[i]) {
                 if (String(po[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
-                    items.push(po[i]);
+                    temp_po.push(po[i]);
                     break;
                 }
             }
@@ -70,16 +70,41 @@ const SearchContainer = () => {
         for (var i = 0; i < pr.length; i++) {
             for (var key in pr[i]) {
                 if (String(pr[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
-                    items.push(pr[i]);
+                    temp_pr.push(pr[i]);
                     break;
                 }
             }
         }
 
-        setResultCnt(10);
-        setItems(items);  
-    }, [Search_Query]);
+        setResultCnt(5);
+        setPMKItems(temp_pmk);
+        setPOItems(temp_po);
+        setPRItems(temp_pr);
 
+        setPrintItems(temp_pmk);
+
+        setisLoading(false);
+    }, []);
+
+    const changedItem = ( idx ) => {
+        setisLoading(true);
+
+        if (idx == 0) {
+            setPrintItems(PMKItems);
+            setNowItem("PMK 재고");
+            setResultCnt(5);
+        } else if (idx == 1) {
+            setPrintItems(POItems);
+            setNowItem("PO");
+            setResultCnt(5);
+        } else if (idx == 2) {
+            setPrintItems(PRItems);
+            setNowItem("PR");
+            setResultCnt(5);
+        }
+
+        setisLoading(false);
+    };
 
     return (
         <Fragment>
@@ -106,34 +131,42 @@ const SearchContainer = () => {
                             style={{}}
                         />
                     </div>
-                    <div className="ResultBox">
-                        <div>
-                            검색 결과 {Items.length}개
-                        </div>
-                        <div style={{ alignItems: 'center', justifyContent: 'center', width: '95%' }}>
-                            {Items.length > 0 ? 
-                            PrintItems.map((data) => {
-                                return <SearchCard data={data} query={Search_Query} />
-                            })
-                            : <div className="NoDataView">
-                                <h3><strong>{Search_Query}</strong>와(과) 관련된 검색결과가 없습니다.</h3>
-                                <ul>
-                                    <li>모든 단어의 철자가 정확한지 확인하세요.</li>
-                                    <li>다른 검색어를 사용해 보세요.</li>
-                                </ul>
-                            </div>}
-                        
-                        </div>
+                    <div style={{display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                        <Button onClick={() => {changedItem(0)}}>PMK 재고 ({PMKItems.length})</Button>
+                        <Button onClick={() => {changedItem(1)}}>PO ({POItems.length})</Button>
+                        <Button onClick={() => {changedItem(2)}}>PR ({PRItems.length})</Button>
                     </div>
+                    {!isLoading &&
                     <div>
-                    {Items.length > ResultCnt ?
-                        <Button block onClick={handleResultCnt} style={{marginBottom: 15}}>
-                            더 찾아보기
-                        </Button>
-                    : ""}
-                    </div>
+                        <div className="ResultBox">
+                            <div>
+                                {NowItem} 검색 결과 {PrintItems.length}개
+                            </div>
+                            <div style={{ alignItems: 'center', justifyContent: 'center', width: '95%' }}>
+                                {PrintItems.length > 0 ? 
+                                PrintItems.map((data) => {
+                                    return <SearchCard data={data} query={Search_Query} />
+                                })
+                                : <div className="NoDataView">
+                                    <h3><strong>{Search_Query}</strong>와(과) 관련된 검색결과가 없습니다.</h3>
+                                    <ul>
+                                        <li>모든 단어의 철자가 정확한지 확인하세요.</li>
+                                        <li>다른 검색어를 사용해 보세요.</li>
+                                    </ul>
+                                </div>}
+                            
+                            </div>
+                        </div>
+                        <div>
+                        {/*PrintItems.length > ResultCnt ?
+                            <Button block onClick={handleResultCnt} style={{marginBottom: 15}}>
+                                더 찾아보기
+                            </Button>
+                            : ""*/}
+                        </div>
+                    </div> }
                 </div>
-            </div>
+            </div> 
         </Fragment>
     );
 }
