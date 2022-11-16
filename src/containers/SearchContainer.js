@@ -10,6 +10,10 @@ import logo from '../logo2.png';
 
 import './SearchContainer.css';
 
+import pmk from '../datas/pmk.json';
+import po from '../datas/po.json';
+import pr from '../datas/pr.json';
+
 
 const { Search } = Input;
 
@@ -47,19 +51,32 @@ const SearchContainer = () => {
     useEffect(() => {
         let items = [];
 
-        for (var i = 0; i < data.length; i++) {
-            if (String(data[i]['Material']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description1']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description2']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description3']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description4']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description5']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Description6']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Old Mat Num']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
-            else if (String(data[i]['Mfr part number']).indexOf(Search_Query.toUpperCase()) != -1) items.push(data[i]);
+        for (var i = 0; i < pmk.length; i++) {
+            for (var key in pmk[i]) {
+                if (String(pmk[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
+                    items.push(pmk[i]);
+                    break;
+                }
+            }
+        }
+        for (var i = 0; i < po.length; i++) {
+            for (var key in po[i]) {
+                if (String(po[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
+                    items.push(po[i]);
+                    break;
+                }
+            }
+        }
+        for (var i = 0; i < pr.length; i++) {
+            for (var key in pr[i]) {
+                if (String(pr[i][key]).indexOf(Search_Query.toUpperCase()) !== -1){
+                    items.push(pr[i]);
+                    break;
+                }
+            }
         }
 
-        setResultCnt(5);
+        setResultCnt(10);
         setItems(items);  
     }, [Search_Query]);
 
